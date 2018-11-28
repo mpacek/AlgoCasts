@@ -9,14 +9,15 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 function anagrams(stringA, stringB) {
-  let arrayA = stringA
-    .replace(/[^\w]/g, '')
-    .toLowerCase()
-    .split('');
-  let arrayB = stringB
-    .replace(/[^\w]/g, '')
-    .toLowerCase()
-    .split('');
+  let arrayA = toArray(stringA);
+  let arrayB = toArray(stringB);
+
+  function toArray(str) {
+    return str
+      .replace(/[^\w]/g, '')
+      .toLowerCase()
+      .split('');
+  }
 
   for (let char of arrayA) {
     if (arrayB.indexOf(char) >= 0) {
