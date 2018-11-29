@@ -9,29 +9,56 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 function anagrams(stringA, stringB) {
-  let arrayA = toArray(stringA);
-  let arrayB = toArray(stringB);
+  const aCharMap = buildCharMap(stringA);
+  const bCharMap = buildCharMap(stringB);
 
-  function toArray(str) {
-    return str
-      .replace(/[^\w]/g, '')
-      .toLowerCase()
-      .split('');
+  if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
+    return false;
   }
 
-  for (let char of arrayA) {
-    if (arrayB.indexOf(char) >= 0) {
-      arrayB.splice(arrayB.indexOf(char), 1);
-    } else {
+  for (let char in aCharMap) {
+    if (aCharMap[char] !== bCharMap[char]) {
       return false;
     }
   }
 
-  if (arrayB.length) {
-    return false;
-  } else {
-    return true;
+  return true;
+}
+
+function buildCharMap(str) {
+  const charMap = {};
+
+  for (let char of str.replace(/[^\w]/g, '').toLowercase()) {
+    charMap[char] = charMap[char] + 1 || 1;
   }
+
+  return charMap;
 }
 
 module.exports = anagrams;
+
+// function anagrams(stringA, stringB) {
+//   let arrayA = toArray(stringA);
+//   let arrayB = toArray(stringB);
+//
+//   for (let char of arrayA) {
+//     if (arrayB.indexOf(char) >= 0) {
+//       arrayB.splice(arrayB.indexOf(char), 1);
+//     } else {
+//       return false;
+//     }
+//   }
+//
+//   if (arrayB.length) {
+//     return false;
+//   } else {
+//     return true;
+//   }
+// }
+//
+// function toArray(str) {
+//   return str
+//     .replace(/[^\w]/g, '')
+//     .toLowerCase()
+//     .split('');
+// }
