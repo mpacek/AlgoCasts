@@ -14,6 +14,46 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+function pyramid(n) {
+  let a = 1;
+  let b = n - 1;
+
+  const addChar = (m, char) => {
+    let charString = '';
+
+    for (let k = 1; k <= m; k++) {
+      charString += char;
+    }
+
+    return charString;
+  };
+
+  for (let i = 1; i <= n; i++) {
+    console.log(addChar(b, ' ') + addChar(a, '#') + addChar(b, ' '));
+    a += 2;
+    b -= 1;
+  }
+}
 
 module.exports = pyramid;
+
+// function pyramid(n) {
+//   let a = 1;
+//   let b = n - 1;
+//
+//   const addChar = (m, char) => {
+//     let charString = '';
+//
+//     for (let k = 1; k <= m; k++) {
+//       charString += char;
+//     }
+//
+//     return charString;
+//   };
+//
+//   for (let i = 1; i <= n; i++) {
+//     console.log(addChar(b, ' ') + addChar(a, '#') + addChar(b, ' '));
+//     a += 2;
+//     b -= 1;
+//   }
+// }
